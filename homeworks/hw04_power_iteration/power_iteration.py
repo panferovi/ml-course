@@ -10,5 +10,9 @@ def get_dominant_eigenvalue_and_eigenvector(data, num_steps):
     eigenvector: np.ndarray – corresponding eigenvector estimation
     """
     ### YOUR CODE HERE
+    step = np.random.randn(data.shape[0])
+    for _ in range(num_steps):
+        A =  np.matmul(data, step)
+        step = A / np.sqrt(np.sum(A * A))
 
-    return 
+    return float(np.matmul(step, np.matmul(data, step)) / np.matmul(step, step)), step
